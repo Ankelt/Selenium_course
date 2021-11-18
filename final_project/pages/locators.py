@@ -16,3 +16,4 @@ class NewYearPageLocators():
     PRICE_IN_BASKET = (By.CSS_SELECTOR, ".alert-info > .alertinner > p > strong")
     PRODUCT_NAME = (By.CSS_SELECTOR, ".col-sm-6 > h1")
     PRODUCT_IN_BASKET = (By.XPATH, "//div[@id='messages']/div[1]/div/strong")
+    SUCCESS_MESSAGE = (By.XPATH, ".alert-success> .alertinner")

@@ -22,4 +22,10 @@ class NewYearPage(BasePage):
         assert product_name == product_in_basket, \
             f"Product name ({product_name}) is not same with name in basket ({product_in_basket})"
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*NewYearPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
 
+    def success_message_is_disappeared(self):
+        assert self.is_disappeared(*NewYearPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should disappear"
