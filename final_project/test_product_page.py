@@ -1,5 +1,5 @@
 import pytest
-from .pages.new_year_page import NewYearPage
+from .pages.product_page import ProductPage
 
 
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
@@ -13,8 +13,9 @@ from .pages.new_year_page import NewYearPage
                                                "/?promo=offer7", marks=pytest.mark.xfail(reason='bug in work')),
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
+@pytest.mark.skip
 def test_guest_can_add_product_to_basket(browser, link):
-    page = NewYearPage(browser, link)
+    page = ProductPage(browser, link)
     page.open()
     page.should_not_be_success_message()
     page.add_product_to_basket()
@@ -23,9 +24,10 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.should_be_success_message()
 
 
+@pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = NewYearPage(browser, link)
+    page = ProductPage(browser, link)
     page.open()
     page.add_product_to_basket()
     page.solve_quiz_and_get_code()
@@ -34,14 +36,15 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
 
 def test_guest_cant_see_success_message(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = NewYearPage(browser, link)
+    page = ProductPage(browser, link)
     page.open()
     page.should_not_be_success_message()
 
 
+@pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-    page = NewYearPage(browser, link)
+    page = ProductPage(browser, link)
     page.open()
     page.add_product_to_basket()
     page.solve_quiz_and_get_code()
